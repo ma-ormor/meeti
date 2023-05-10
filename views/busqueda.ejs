@@ -1,0 +1,11 @@
+<main class="contenedor">
+  <h1><%=pagina%></h1>
+  
+  <%if(meetis.length){%>
+    <%meetis.forEach(meeti=>{%>
+      <%-include partials/card-meeti.ejs%>
+    <%})%>
+  <%}else{%>
+    <p>Sin Resultados</p>
+  <%}%>
+</main>

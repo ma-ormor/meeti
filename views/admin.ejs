@@ -1,0 +1,89 @@
+<main class="contenedor panel-administracion">
+  <h1><%=pagina%></h1>
+
+  <div class="contenedor-botones">
+    <a href="/nuevo-grupo" class="btn btn-amarillo">Nuevo Grupo</a>
+    <a href="/nuevo-meeti" class="btn btn-azul">Nuevo Meeti</a>
+    <a href="/editar-perfil" class="btn btn-rosa">Editar Pérfil</a>
+    <a href="/cambiar-password" class="btn btn-verde">Cambiar Contraseña</a>
+    <a href="/imagen-perfil" class="btn btn-amarillo">Imagen Pérfil</a>
+  </div>
+
+  <div class="seccion-admin">
+    <h2>Nuevos Meeti</h2>
+    <%if(meetis.length){%>
+    <ul>
+      <%meetis.forEach(meeti=>{%>
+        <li><div class="informacion-admin">
+          <%moment.locale('es')%>
+          <%const fecha = meeti.fecha+' '+meeti.hora%>
+          <p class="fecha"><%=moment(fecha).format('LLL')%></p>
+          <a href="/meeti/<%=meeti.slug%>" target="_blank">
+            <h3><%=meeti.titulo%></h3></a>
+          <small><%=meeti.interesados.length%> Asistentes</small>
+        </div>
+
+        <div class="acciones contenedor-botones">
+          <a href="/editar-meeti/<%=meeti.id%>" class="btn btn-verde">Editar</a>
+          <a href="/asistentes-meeti/<%=meeti.id%>" class="btn btn-azul2">Asistencias</a>
+          <a href="/eliminar-meeti/<%=meeti.id%>" class="btn btn-rojo">Eliminar</a>
+        </div></li>
+      <%})%>
+    </ul>
+    <%}else{%>
+      <p>Sin Eventos</p>
+    <%}%>
+  </div>
+
+  <div class="seccion-admin">
+    <h2>Tus Grupos</h2>
+    <%if(grupos.length){%>
+      <ul>
+        <%grupos.forEach(grupo=>{%>
+        <li><div class="informacion-admin">
+          <h3><%=grupo.nombre%></h3>
+        </div>
+
+        <div class="acciones contenedor-botones">
+          <a 
+            href="/editar-grupo/<%=grupo.id%>" 
+            class="btn btn-verde">Editar</a>
+          <a 
+            href="/imagen-grupo/<%=grupo.id%>" 
+            class="btn btn-azul2">Imagen</a>
+          <a 
+            href="/eliminar-grupo/<%=grupo.id%>" 
+            class="btn btn-rojo">Eliminar</a>
+        </div></li></li>
+        <%})%>
+      </ul>
+    <%}else{%>
+      <p>Sin Grupos</p>
+    <%}%>
+  </div>
+
+  <div class="seccion-admin">
+    <h2>Viejos Eventos</h2>
+    <%if(pasados.length){%>
+    <ul>
+      <%pasados.forEach(meeti=>{%>
+      <li><div class="informacion-admin">
+        <%moment.locale('es')%>
+        <%const fecha = meeti.fecha+' '+meeti.hora%>
+        <p class="fecha"><%=moment(fecha).format('LLL')%></p>
+        <h3><%=meeti.titulo%></h3>
+        <small><%=meeti.interesados.length%> Asistentes</small>
+      </div>
+
+      <div class="acciones contenedor-botones">
+        <a href="/editar-meeti/<%=meeti.id%>" class="btn btn-verde">Editar</a>
+        <a href="/asistentes-meeti/<%=meeti.id%>" class="btn btn-azul2">Asistencias</a>
+        <a href="/eliminar-meeti/<%=meeti.id%>" class="btn btn-rojo">Eliminar</a>
+      </div></li>
+      <%})%>
+    </ul>
+    <%}else{%>
+      <p>Sin Eventos</p>
+    <%}%>
+  </div>
+</main>
